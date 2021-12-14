@@ -70,6 +70,7 @@ INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Recô
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal da Lusofonia Afro-Brasileira', 'UNILAB');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal da Paraíba', 'UFPB');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Cariri', 'UFCA');
+INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Alagoas', 'UFAL');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Campina Grande', 'UFCG');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Pernambuco', 'UFPE');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Sergipe', 'UFS');
@@ -92,7 +93,7 @@ INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Tocan
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal Rural da Amazônia', 'UFRA');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Sul e Sudeste do Pará', 'UNIFESSPA');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Alfenas', 'UNIFAL-MG');
-INSERT INTO universities (name, initials) VALUES ('	Universidade Federal de Itajubá', 'UNIFEI');
+INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Itajubá', 'UNIFEI');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Juiz de Fora', 'UFJF');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Lavras', 'UFLA');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Minas Gerais', 'UFMG');
@@ -106,6 +107,10 @@ INSERT INTO universities (name, initials) VALUES ('Universidade Federal do ABC',
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Espírito Santo', 'UFES');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Estado do Rio de Janeiro', 'UNIRIO');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Rio de Janeiro', 'UFRJ');
+INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Triângulo Mineiro', 'UFTM');
+INSERT INTO universities (name, initials) VALUES ('Universidade Federal dos Vales do Jequitinhonha e Mucuri', 'UFVJM');
+INSERT INTO universities (name, initials) VALUES ('Universidade Federal Fluminense', 'UFF');
+INSERT INTO universities (name, initials) VALUES ('Universidade Federal Rural do Rio de Janeiro', 'UFRRJ');
 INSERT INTO universities (name, initials) VALUES ('Universidade Tecnológica Federal do Paraná', 'UTFPR');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal da Fronteira Sul', 'UFFS');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal da Integração Latino-Americana', 'UNILA');
@@ -119,4 +124,4 @@ INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Rio G
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Rio Grande do Sul', 'UFRGS');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Agreste de Pernambuco', 'UFAPE');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Delta do Parnaíba', 'UFDPar');
-INSERT INTO universities (name, initials) VALUES ('	Universidade Federal do Norte do Tocantins', 'UFNT');
+INSERT INTO universities (name, initials) VALUES ('Universidade Federal do Norte do Tocantins', 'UFNT');
