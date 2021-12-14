@@ -11,7 +11,6 @@ CREATE TABLE "professors" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL,
 	"university_id" integer NOT NULL,
-	"negative_score" integer NOT NULL,
 	CONSTRAINT "professors_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -23,7 +22,6 @@ CREATE TABLE "tests" (
 	"professor_id" integer NOT NULL,
 	"type_id" integer NOT NULL,
 	"subject_id" integer NOT NULL,
-	"negative_score" integer NOT NULL,
 	CONSTRAINT "tests_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -46,6 +44,34 @@ CREATE TABLE "subjects" (
   OIDS=FALSE
 );
 
+CREATE TABLE "courses" (
+	"id" serial NOT NULL,
+	"name" varchar(255) NOT NULL,
+	"type" varchar(255),
+	CONSTRAINT "courses_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE "universities_courses" (
+	"id" serial NOT NULL,
+	"university_id" integer NOT NULL,
+	"course_id" integer NOT NULL,
+	CONSTRAINT "universities_courses_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE "courses_subjects" (
+	"id" serial NOT NULL,
+	"course_id" integer NOT NULL,
+	"subject_id" integer NOT NULL,
+	"period" integer NOT NULL,
+	CONSTRAINT "courses_subjects_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
 
 ALTER TABLE "professors" ADD CONSTRAINT "professors_fk0" FOREIGN KEY ("university_id") REFERENCES "universities"("id");
 
@@ -55,6 +81,17 @@ ALTER TABLE "tests" ADD CONSTRAINT "tests_fk0" FOREIGN KEY ("professor_id") REFE
 ALTER TABLE "tests" ADD CONSTRAINT "tests_fk1" FOREIGN KEY ("type_id") REFERENCES "test_types"("id");
 
 ALTER TABLE "tests" ADD CONSTRAINT "tests_fk2" FOREIGN KEY ("subject_id") REFERENCES "subjects"("id");
+
+
+ALTER TABLE "universities_courses" ADD CONSTRAINT "universities_courses_fk0" FOREIGN KEY ("university_id") REFERENCES "universities"("id");
+
+ALTER TABLE "universities_courses" ADD CONSTRAINT "universities_courses_fk1" FOREIGN KEY ("course_id") REFERENCES "courses"("id");
+
+
+ALTER TABLE "courses_subjects" ADD CONSTRAINT "courses_subjects_fk0" FOREIGN KEY ("course_id") REFERENCES "courses"("id");
+
+ALTER TABLE "courses_subjects" ADD CONSTRAINT "courses_subjects_fk1" FOREIGN KEY ("subject_id") REFERENCES "subjects"("id");
+
 
 INSERT INTO universities (name, initials) VALUES ('Universidade de Brasília', 'UnB');	
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal da Grande Dourados', 'UFGD');
