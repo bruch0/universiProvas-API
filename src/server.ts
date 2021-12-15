@@ -1,4 +1,6 @@
-import './setup';
-import app from './app';
+import "./setup";
+import app, { init } from "./app";
 
-app.listen(process.env.PORT);
+init().then(() => {
+  app.listen(process.env.PORT);
+});
