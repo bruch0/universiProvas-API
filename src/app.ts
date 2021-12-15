@@ -4,6 +4,7 @@ import "reflect-metadata";
 
 import connectDatabase from "./database/database";
 import universityRoute from "./routes/university";
+import coursesRoute from "./routes/courses";
 import errorRoute from "./middlewares/errorRoute";
 import inexistentRoute from "./routes/inexistentRoute";
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(universityRoute);
+app.use(coursesRoute);
 
 app.use(errorRoute);
 app.use(inexistentRoute);
