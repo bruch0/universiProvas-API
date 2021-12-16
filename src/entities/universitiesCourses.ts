@@ -11,5 +11,3 @@ export class UniversitiesCourses {
   @Column()
   course_id: number;
 }
-
-// SELECT universities_courses.*, courses.name FROM universities_courses JOIN courses ON universities_courses.course_id = courses.id;
