@@ -72,6 +72,15 @@ CREATE TABLE "courses_subjects" (
   OIDS=FALSE
 );
 
+CREATE TABLE "professors_courses" (
+	"id" serial NOT NULL,
+	"professor_id" integer NOT NULL,
+	"course_id" integer NOT NULL,
+	CONSTRAINT "professors_courses_pk" PRIMARY KEY ("id")
+) WITH (
+  OIDS=FALSE
+);
+
 
 ALTER TABLE "professors" ADD CONSTRAINT "professors_fk0" FOREIGN KEY ("university_id") REFERENCES "universities"("id");
 
@@ -91,6 +100,11 @@ ALTER TABLE "universities_courses" ADD CONSTRAINT "universities_courses_fk1" FOR
 ALTER TABLE "courses_subjects" ADD CONSTRAINT "courses_subjects_fk0" FOREIGN KEY ("course_id") REFERENCES "courses"("id");
 
 ALTER TABLE "courses_subjects" ADD CONSTRAINT "courses_subjects_fk1" FOREIGN KEY ("subject_id") REFERENCES "subjects"("id");
+
+
+ALTER TABLE "professors_courses" ADD CONSTRAINT "professors_courses_fk0" FOREIGN KEY ("professor_id") REFERENCES "professors"("id");
+
+ALTER TABLE "professors_courses" ADD CONSTRAINT "professors_courses_fk1" FOREIGN KEY ("course_id") REFERENCES "courses"("id");
 
 
 INSERT INTO universities (name, initials) VALUES ('Universidade de Brasília', 'UnB');	
