@@ -1,13 +1,13 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
-@Entity("universities_courses")
-export class UniversitiesCourses {
+@Entity("professors")
+export class Professors {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  university_id: number;
+  name: string;
 
   @Column()
-  course_id: number;
+  university_id: number;
 }

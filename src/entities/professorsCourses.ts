@@ -1,12 +1,13 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Professors } from "./professors";
 
-@Entity("universities_courses")
-export class UniversitiesCourses {
+@Entity("professors_courses")
+export class ProfessorCourses {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  university_id: number;
+  professor_id: number;
 
   @Column()
   course_id: number;
