@@ -66,6 +66,7 @@ CREATE TABLE "courses_subjects" (
 	"id" serial NOT NULL,
 	"course_id" integer NOT NULL,
 	"subject_id" integer NOT NULL,
+	"university_id" integer NOT NULL,
 	"period" integer NOT NULL,
 	CONSTRAINT "courses_subjects_pk" PRIMARY KEY ("id")
 ) WITH (
@@ -100,6 +101,8 @@ ALTER TABLE "universities_courses" ADD CONSTRAINT "universities_courses_fk1" FOR
 ALTER TABLE "courses_subjects" ADD CONSTRAINT "courses_subjects_fk0" FOREIGN KEY ("course_id") REFERENCES "courses"("id");
 
 ALTER TABLE "courses_subjects" ADD CONSTRAINT "courses_subjects_fk1" FOREIGN KEY ("subject_id") REFERENCES "subjects"("id");
+
+ALTER TABLE "courses_subjects" ADD CONSTRAINT "courses_subjects_fk2" FOREIGN KEY ("university_id") REFERENCES "universities"("id");
 
 
 ALTER TABLE "professors_courses" ADD CONSTRAINT "professors_courses_fk0" FOREIGN KEY ("professor_id") REFERENCES "professors"("id");
