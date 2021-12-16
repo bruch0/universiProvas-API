@@ -1,6 +1,7 @@
-import { getManager } from "typeorm";
+import { getManager, getRepository } from "typeorm";
 import { Professor } from "../interfaces/professor";
 import { TestCount } from "../interfaces/testCount";
+import { Courses } from "../entities/courses";
 
 const getUniversityProfessors = async (
   universityId: number,
@@ -15,6 +16,8 @@ const getUniversityProfessors = async (
     "SELECT professor_id, COUNT(*) FROM tests GROUP by professor_id"
   );
 
+  const courses = await getRepository(Courses).find({ id: courseId });
+
   professors.forEach((professor) => {
     professor.totalTests = testsCount.find(
       (test: TestCount) => test.professor_id === professor.id
@@ -23,7 +26,7 @@ const getUniversityProfessors = async (
     professor.totalTests = Number(professor.totalTests?.count) || 0;
   });
 
-  return professors;
+  return { professors, course: courses[0].name };
 };
 
 export { getUniversityProfessors };
