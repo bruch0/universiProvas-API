@@ -23,7 +23,7 @@ const getUniversityProfessors = async (
       (test: TestCount) => test.professor_id === professor.id
     );
 
-    professor.totalTests = Number(professor.totalTests?.count) || 0;
+    professor.totalTests = professor.totalTests?.count || "0";
   });
 
   return { professors, course: courses[0].name };
