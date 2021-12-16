@@ -33,8 +33,6 @@ const getUniversityProfessors = async (
     .where(`id = ${courseId}`)
     .execute();
 
-  console.log(courses);
-
   professors.forEach((professor) => {
     professor.totalTests = testsCount.find(
       (test: TestCount) => test.professor_id === professor.id
