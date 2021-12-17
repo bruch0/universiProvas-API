@@ -1,7 +1,8 @@
-import { getConnection } from "typeorm";
+import { getConnection, getManager } from "typeorm";
 import { Subjects } from "../entities/subjects";
 import { CourseSubjects } from "../entities/courseSubjects";
 import { Subject } from "../interfaces/subject";
+import { TestCount } from "../interfaces/testCount";
 
 const getCourseSubjects = async (universityId: number, courseId: number) => {
   const subjects: Subject[] = await getConnection()
@@ -18,6 +19,19 @@ const getCourseSubjects = async (universityId: number, courseId: number) => {
     .andWhere(`courses_subjects.course_id = ${courseId}`)
     .execute();
 
+  const subjectsTestCount: TestCount[] = await getManager().query(`
+	SELECT COUNT (tests.subject_id), subjects.code
+		FROM tests
+			JOIN courses_subjects ON tests.subject_id = courses_subjects.subject_id
+			JOIN professors ON tests.professor_id = professors.id 
+			JOIN subjects ON subjects.id = tests.subject_id
+				WHERE professors.id = 1
+			AND
+				courses_subjects.course_id = 32
+					GROUP BY subjects.code 
+    
+	`);
+
   const subjectsByPeriods: any = [];
   let maxPeriod = 1;
 
@@ -25,6 +39,12 @@ const getCourseSubjects = async (universityId: number, courseId: number) => {
     if (subject.period > maxPeriod) {
       maxPeriod = subject.period;
     }
+
+    subjectsTestCount.forEach((testCount) => {
+      if (subject.code === testCount.code) {
+        subject.count = testCount.count;
+      }
+    });
   });
 
   let actualPeriod = 1;
@@ -36,6 +56,7 @@ const getCourseSubjects = async (universityId: number, courseId: number) => {
         filteredSubjects.push({
           name: sub.name,
           code: sub.code,
+          totalTests: sub.count,
         });
       }
     });
@@ -47,19 +68,6 @@ const getCourseSubjects = async (universityId: number, courseId: number) => {
 
     actualPeriod += 1;
   }
-
-  // const filteredSubjects = subjects.filter((sub) => {
-  //   console.log(sub.period, period);
-  //   return (sub.period = period);
-  // });
-
-  // subjectsByPeriods.push({
-  //   period,
-  //   subjects: filteredSubjects,
-  // });
-
-  // period += 1;
-  //   });
 
   return subjectsByPeriods;
 };
