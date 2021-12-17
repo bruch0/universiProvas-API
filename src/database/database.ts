@@ -1,3 +1,4 @@
+import "../setup";
 import { getConnectionManager } from "typeorm";
 
 export default async function connect() {
@@ -5,7 +6,7 @@ export default async function connect() {
   const connection = connectionManager.create({
     name: "default",
     type: "postgres",
-    url: "postgres://postgres:123456@localhost:5432/universiprovas",
+    url: process.env.DATABASE_URL,
     entities: ["src/entities/*.ts"],
   });
   await connection.connect();
