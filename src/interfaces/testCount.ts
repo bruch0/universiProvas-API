@@ -1,5 +1,6 @@
 interface TestCount {
-  professor_id: number;
+  professor_id?: number;
+  code?: string;
   count: number;
 }
 
