@@ -6,6 +6,7 @@ import connectDatabase from "./database/database";
 import universityRoute from "./routes/university";
 import coursesRoute from "./routes/courses";
 import professorsRoute from "./routes/professors";
+import professorTestsRoute from "./routes/professorTests";
 import subjectsRouter from "./routes/subjects";
 
 import errorRoute from "./middlewares/errorRoute";
@@ -19,6 +20,7 @@ app.use(universityRoute);
 app.use(coursesRoute);
 app.use(professorsRoute);
 app.use(subjectsRouter);
+app.use(professorTestsRoute);
 
 app.use(errorRoute);
 app.use(inexistentRoute);
