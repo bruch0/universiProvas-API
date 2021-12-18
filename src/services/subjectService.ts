@@ -8,7 +8,11 @@ import { TestCount } from "../interfaces/testCount";
 const getCourseSubjects = async (universityId: number, courseId: number) => {
   const subjects: Subject[] = await getConnection()
     .createQueryBuilder()
-    .select(["subjects.name as name", "subjects.code as code"])
+    .select([
+      "subjects.id as id",
+      "subjects.name as name",
+      "subjects.code as code",
+    ])
     .from(Subjects, "subjects")
     .leftJoin(
       CourseSubjects,
@@ -61,6 +65,7 @@ const getCourseSubjects = async (universityId: number, courseId: number) => {
     subjects.forEach((sub) => {
       if (sub.period === actualPeriod) {
         filteredSubjects.push({
+          id: sub.id,
           name: sub.name,
           code: sub.code,
           totalTests: sub.count,
