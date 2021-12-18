@@ -110,6 +110,12 @@ ALTER TABLE "professors_courses" ADD CONSTRAINT "professors_courses_fk0" FOREIGN
 ALTER TABLE "professors_courses" ADD CONSTRAINT "professors_courses_fk1" FOREIGN KEY ("course_id") REFERENCES "courses"("id");
 
 
+INSERT INTO test_types (name) VALUES ('P1')
+INSERT INTO test_types (name) VALUES ('P2')
+INSERT INTO test_types (name) VALUES ('P3')
+INSERT INTO test_types (name) VALUES ('2CH')
+INSERT INTO test_types (name) VALUES ('Outros')
+
 INSERT INTO universities (name, initials) VALUES ('Universidade de Brasília', 'UnB');	
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal da Grande Dourados', 'UFGD');
 INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Goiás', 'UFG');

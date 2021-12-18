@@ -6,7 +6,9 @@ import connectDatabase from "./database/database";
 import universityRoute from "./routes/university";
 import coursesRoute from "./routes/courses";
 import professorsRoute from "./routes/professors";
-import subjectsRouter from "./routes/subjects";
+import professorTestsRoute from "./routes/professorTests";
+import subjectsRoute from "./routes/subjects";
+import subjectTestsRoute from "./routes/subjectTests";
 
 import errorRoute from "./middlewares/errorRoute";
 import inexistentRoute from "./routes/inexistentRoute";
@@ -18,7 +20,9 @@ app.use(cors());
 app.use(universityRoute);
 app.use(coursesRoute);
 app.use(professorsRoute);
-app.use(subjectsRouter);
+app.use(subjectsRoute);
+app.use(professorTestsRoute);
+app.use(subjectTestsRoute);
 
 app.use(errorRoute);
 app.use(inexistentRoute);
