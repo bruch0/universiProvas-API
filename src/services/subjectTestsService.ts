@@ -32,7 +32,6 @@ const getSubjectTests = async (universityId: number, subjectId: number) => {
 
   subjectTests.forEach((type: any) => {
     const testType = type.name;
-    console.log(testType);
     const auxFilter: any = [];
 
     if (!groupedTypes.includes(testType)) {
