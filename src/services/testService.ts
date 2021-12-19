@@ -22,16 +22,16 @@ const getTestNeededInfo = async () => {
 
   for (let i = 0; i < 3; i++) {
     for (let j = 1; j < 3; j++) {
-      availablePeriods.push(
-        `${dayjs(minimumPeriod).add(i, "years").format("YYYY")}.${j}`
-      );
+      availablePeriods.push({
+        name: `${dayjs(minimumPeriod).add(i, "years").format("YYYY")}.${j}`,
+      });
     }
   }
 
   if (dayjs().month() > 6)
-    availablePeriods.push(
-      `${dayjs(minimumPeriod).add(3, "years").format("YYYY")}.1`
-    );
+    availablePeriods.push({
+      name: `${dayjs(minimumPeriod).add(3, "years").format("YYYY")}.1`,
+    });
 
   return { professors, subjects, availablePeriods };
 };
