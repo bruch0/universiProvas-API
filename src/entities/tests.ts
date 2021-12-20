@@ -6,7 +6,7 @@ export class Tests {
   id: number;
 
   @Column()
-  period: number;
+  year: string;
 
   @Column()
   professor_id: number;
@@ -16,4 +16,7 @@ export class Tests {
 
   @Column()
   subject_id: number;
+
+  @Column()
+  url: string;
 }
