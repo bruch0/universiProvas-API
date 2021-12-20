@@ -8,7 +8,7 @@ const getSubjectTests = async (universityId: number, subjectId: number) => {
   const subjectTests = await getConnection()
     .createQueryBuilder()
     .select([
-      "tests.period as period",
+      "tests.year as period",
       "tests.url as url",
       "test_types.name as name",
       "professors.name as professor",
