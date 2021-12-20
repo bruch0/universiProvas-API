@@ -18,10 +18,11 @@ CREATE TABLE "professors" (
 
 CREATE TABLE "tests" (
 	"id" serial NOT NULL,
-	"period" varchar(6) NOT NULL,
+	"year" varchar(6) NOT NULL,
 	"professor_id" integer NOT NULL,
 	"type_id" integer NOT NULL,
 	"subject_id" integer NOT NULL,
+	"url" varchar(255) NOT NULL,
 	CONSTRAINT "tests_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
