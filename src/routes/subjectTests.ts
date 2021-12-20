@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get(
   "/subjects/:universityId/:subjectId/tests",
-  subjectTestsController.getProfessorTests
+  subjectTestsController.getSubjectTests
 );
 
 export default router;

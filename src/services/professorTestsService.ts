@@ -48,7 +48,7 @@ const getProfessorTests = async (professorId: number) => {
     }
   });
 
-  return { tests: groupedTests, professor: professor[0].name };
+  return { tests: groupedTests, professor: professor[0]?.name };
 };
 
 export { getProfessorTests };

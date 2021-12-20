@@ -8,8 +8,11 @@ const getCoursesByUniversity = async (
 ) => {
   const universityId = Number(req.params.universityId);
 
-  if (!universityId || universityId < 1)
+  if (!universityId || universityId < 1 || isNaN(universityId))
     return res.status(400).send("Universidade inválida");
+
+  if (universityId > 69)
+    return res.status(404).send("Universidade não encontrada");
 
   try {
     const universities = await courseService.getCoursesByUniversity(

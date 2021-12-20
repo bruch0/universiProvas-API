@@ -3,7 +3,7 @@ import cors from "cors";
 import "reflect-metadata";
 
 import connectDatabase from "./database/database";
-import universityRoute from "./routes/university";
+import universityRoute from "./routes/universities";
 import coursesRoute from "./routes/courses";
 import professorsRoute from "./routes/professors";
 import professorTestsRoute from "./routes/professorTests";
