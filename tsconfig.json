@@ -1,8 +1,16 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
     "esModuleInterop": true,
+    "noImplicitAny": true,
+    "target": "es2019",
+    "module": "commonjs",
+    "lib": ["es2019"],
+    "resolveJsonModule": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
-  }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "tests"]
 }
