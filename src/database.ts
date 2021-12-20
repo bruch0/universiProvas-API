@@ -8,6 +8,8 @@ if (
   process.env.DATABASE_URL += "?sslmode=require";
 }
 
+console.log(process.env);
+
 export default async function connect() {
   const connectionManager = await getConnectionManager();
   const connection = connectionManager.create({
