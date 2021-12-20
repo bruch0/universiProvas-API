@@ -7,7 +7,8 @@ import universityRoute from "./routes/university";
 import coursesRoute from "./routes/courses";
 import professorsRoute from "./routes/professors";
 import professorTestsRoute from "./routes/professorTests";
-import subjectsRoute from "./routes/subjects";
+import subjectsRouter from "./routes/subjects";
+import testRouter from "./routes/tests";
 import subjectTestsRoute from "./routes/subjectTests";
 
 import errorRoute from "./middlewares/errorRoute";
@@ -20,9 +21,10 @@ app.use(cors());
 app.use(universityRoute);
 app.use(coursesRoute);
 app.use(professorsRoute);
-app.use(subjectsRoute);
 app.use(professorTestsRoute);
+app.use(subjectsRouter);
 app.use(subjectTestsRoute);
+app.use(testRouter);
 
 app.use(errorRoute);
 app.use(inexistentRoute);
