@@ -9,15 +9,26 @@ const getCourseSubjects = async (
   const universityId = Number(req.params.universityId);
   const courseId = Number(req.params.courseId);
 
-  if (!universityId || universityId < 1)
-    return res.status(400).send("Universidade inválida");
+  if (
+    !universityId ||
+    universityId < 1 ||
+    !courseId ||
+    courseId < 1 ||
+    isNaN(courseId) ||
+    isNaN(universityId)
+  )
+    return res.status(400).send("Universidade e/ou curso inválidos");
 
-  const subjects = await subjectService.getCourseSubjects(
-    universityId,
-    courseId
-  );
+  try {
+    const subjects = await subjectService.getCourseSubjects(
+      universityId,
+      courseId
+    );
 
-  return res.send(subjects);
+    return res.send(subjects);
+  } catch (error) {
+    next(error);
+  }
 };
 
 export { getCourseSubjects };

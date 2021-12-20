@@ -9,9 +9,13 @@ const getCourseSubjects = async (
   res: Response,
   next: NextFunction
 ) => {
-  const info = await testService.getTestNeededInfo();
+  try {
+    const info = await testService.getTestNeededInfo();
 
-  return res.send(info);
+    return res.send(info);
+  } catch (error) {
+    next(error);
+  }
 };
 
 const uploadTest = async (req: Request, res: Response, next: NextFunction) => {

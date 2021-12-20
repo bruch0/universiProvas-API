@@ -8,8 +8,8 @@ const getProfessorTests = async (
 ) => {
   const professorId = Number(req.params.professorId);
 
-  if (!professorId || professorId < 1)
-    return res.status(400).send("Universidade inválida");
+  if (!professorId || professorId < 1 || isNaN(professorId))
+    return res.status(400).send("Professor inválido");
 
   try {
     const professorTests = await professorTestsService.getProfessorTests(

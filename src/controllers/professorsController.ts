@@ -9,15 +9,26 @@ const getUniversityProfessors = async (
   const universityId = Number(req.params.universityId);
   const courseId = Number(req.params.courseId);
 
-  if (!universityId || universityId < 1)
-    return res.status(400).send("Universidade inválida");
+  if (
+    !universityId ||
+    universityId < 1 ||
+    !courseId ||
+    courseId < 1 ||
+    isNaN(courseId) ||
+    isNaN(universityId)
+  )
+    return res.status(400).send("Universidade e/ou curso inválidos");
 
-  const universities = await professorsService.getUniversityProfessors(
-    universityId,
-    courseId
-  );
+  try {
+    const universities = await professorsService.getUniversityProfessors(
+      universityId,
+      courseId
+    );
 
-  return res.send(universities);
+    return res.send(universities);
+  } catch (error) {
+    next(error);
+  }
 };
 
 export { getUniversityProfessors };
