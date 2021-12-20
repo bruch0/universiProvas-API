@@ -1,5 +1,4 @@
 import AWS from "aws-sdk";
-import { x } from "joi";
 
 const uploadFileS3 = async (file: any, filename: string) => {
   const s3 = new AWS.S3({
@@ -8,7 +7,7 @@ const uploadFileS3 = async (file: any, filename: string) => {
   });
 
   const params = {
-    Bucket: "universiprova",
+    Bucket: process.env.BUCKET,
     Key: `${filename}.pdf`,
     Body: file,
     ContentType: "file/PDF",
