@@ -1,4 +1,4 @@
-import "../setup";
+import "./setup";
 import { getConnectionManager } from "typeorm";
 
 if (
@@ -20,6 +20,5 @@ export default async function connect() {
     ssl: process.env.NODE_ENV === "prod",
   });
   await connection.connect();
-
   return connection;
 }
