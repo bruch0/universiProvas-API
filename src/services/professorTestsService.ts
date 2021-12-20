@@ -7,7 +7,7 @@ const getProfessorTests = async (professorId: number) => {
   const professorTests = await getConnection()
     .createQueryBuilder()
     .select([
-      "tests.period as period",
+      "tests.year as period",
       "tests.url as url",
       "test_types.name as name",
     ])
