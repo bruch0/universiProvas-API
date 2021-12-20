@@ -12,8 +12,10 @@ const getCourseSubjects = async (
   if (
     !universityId ||
     universityId < 1 ||
+    universityId > 69 ||
     !courseId ||
     courseId < 1 ||
+    courseId > 321 ||
     isNaN(courseId) ||
     isNaN(universityId)
   )

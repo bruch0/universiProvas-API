@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import * as subjectTestsService from "../services/subjectTestsService";
 
-const getProfessorTests = async (
+const getSubjectTests = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -31,4 +31,4 @@ const getProfessorTests = async (
   }
 };
 
-export { getProfessorTests };
+export { getSubjectTests };
