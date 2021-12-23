@@ -3,7 +3,9 @@ import { Subjects } from "../entities/subjects";
 import { Courses } from "../entities/courses";
 import { CourseSubjects } from "../entities/courseSubjects";
 import { Subject } from "../interfaces/subject";
-import { TestCount } from "../interfaces/testCount";
+import { Professors } from "../entities/professors";
+import { Universities } from "../entities/university";
+import { Tests } from "../entities/tests";
 
 const getCourseSubjects = async (universityId: number, courseId: number) => {
   const subjects: Subject[] = await getConnection()
@@ -24,17 +26,33 @@ const getCourseSubjects = async (universityId: number, courseId: number) => {
     .andWhere(`courses_subjects.course_id = ${courseId}`)
     .execute();
 
-  const subjectsTestCount: TestCount[] = await getManager().query(`
-	SELECT COUNT (tests.subject_id), subjects.code
-		FROM tests
-			JOIN courses_subjects ON tests.subject_id = courses_subjects.subject_id
-			JOIN professors ON tests.professor_id = professors.id 
-            JOIN universities ON professors.university_id = universities.id
-			JOIN subjects ON subjects.id = tests.subject_id
-               WHERE universities.id = ${universityId}
-				AND courses_subjects.course_id = ${courseId}
-					GROUP BY subjects.code 
-	`);
+  const subjectsCodes = await getConnection()
+    .createQueryBuilder()
+    .select("subjects.code as code")
+    .from(Tests, "tests")
+    .leftJoin(
+      CourseSubjects,
+      "courses_subjects",
+      "tests.subject_id = courses_subjects.subject_id"
+    )
+    .leftJoin(Professors, "professors", "tests.professor_id = professors.id")
+    .leftJoin(
+      Universities,
+      "universities",
+      "professors.university_id = universities.id"
+    )
+    .leftJoin(Subjects, "subjects", "tests.subject_id = subjects.id")
+    .where(`universities.id = ${universityId}`)
+    .andWhere(`courses_subjects.course_id = ${courseId}`)
+    .execute();
+
+  const subjectsTestCount: any = {};
+
+  subjectsCodes.forEach((subject: any) => {
+    subjectsTestCount[subject.code] = subjectsTestCount[subject.code]
+      ? subjectsTestCount[subject.code] + 1
+      : 1;
+  });
 
   const courses = await getConnection()
     .createQueryBuilder()
@@ -51,11 +69,7 @@ const getCourseSubjects = async (universityId: number, courseId: number) => {
       maxPeriod = subject.period;
     }
 
-    subjectsTestCount.forEach((testCount) => {
-      if (subject.code === testCount.code) {
-        subject.count = testCount.count;
-      }
-    });
+    subject.count = subjectsTestCount[subject.code];
   });
 
   let actualPeriod = 1;
