@@ -69,7 +69,7 @@ const getCourseSubjects = async (universityId: number, courseId: number) => {
       maxPeriod = subject.period;
     }
 
-    subject.count = subjectsTestCount[subject.code];
+    subject.count = subjectsTestCount[subject.code] || "0";
   });
 
   let actualPeriod = 1;
