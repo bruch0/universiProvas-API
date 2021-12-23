@@ -4,6 +4,7 @@ import { Professors } from "../entities/professors";
 import { ProfessorCourses } from "../entities/professorsCourses";
 import { TestCount } from "../interfaces/testCount";
 import { Courses } from "../entities/courses";
+import { Tests } from "../entities/tests";
 
 const getUniversityProfessors = async (
   universityId: number,
@@ -22,26 +23,36 @@ const getUniversityProfessors = async (
     .andWhere(`professors_courses.course_id = ${courseId}`)
     .execute();
 
-  const testsCount = await getManager().query(
-    "SELECT professor_id, COUNT(*) FROM tests GROUP by professor_id"
-  );
+  let auxQuery = "";
+  professors.forEach((professor) => {
+    auxQuery += `professor_id = ${professor.id} OR `;
+  });
 
-  const courses = await getConnection()
+  const query = auxQuery.substring(0, auxQuery.length - 4);
+
+  const professorTests = await getConnection()
+    .createQueryBuilder()
+    .select("tests.professor_id as professorid")
+    .from(Tests, "tests")
+    .where(query)
+    .andWhere(`tests.course_id = ${courseId}`)
+    .execute();
+
+  professors.forEach((professor) => {
+    const totalTests = professorTests.filter(
+      (test: any) => test.professorid === professor.id
+    );
+    professor.totalTests = totalTests.length || "0";
+  });
+
+  const course = await getConnection()
     .createQueryBuilder()
     .select("courses.name as name")
     .from(Courses, "courses")
     .where(`id = ${courseId}`)
     .execute();
 
-  professors.forEach((professor) => {
-    professor.totalTests = testsCount.find(
-      (test: TestCount) => test.professor_id === professor.id
-    );
-
-    professor.totalTests = professor.totalTests?.count || "0";
-  });
-
-  return { professors, course: courses[0].name };
+  return { professors, course: course[0].name };
 };
 
 export { getUniversityProfessors };
