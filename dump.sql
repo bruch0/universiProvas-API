@@ -121,7 +121,7 @@ INSERT INTO test_types (name) VALUES ('2CH');
 INSERT INTO test_types (name) VALUES ('Outros');
 
 
-INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Santa Catarina', 'UFSC');	
+INSERT INTO universities (name, initials) VALUES ('Universidade Federal de Santa Catarina', 'UFSC');
 
 
 INSERT INTO courses (name, type) VALUES ('Administração', 'Bacharelado');
@@ -585,3 +585,8 @@ INSERT INTO professors_courses (professor_id, course_id) VALUES (99, 1);
 INSERT INTO professors_courses (professor_id, course_id) VALUES (100, 1);
 INSERT INTO professors_courses (professor_id, course_id) VALUES (101, 1);
 INSERT INTO professors_courses (professor_id, course_id) VALUES (102, 1);
+
+
+INSERT INTO universities_courses (university_id, course_id) VALUES (1, 1);
+INSERT INTO universities_courses (university_id, course_id) VALUES (1, 2);
+INSERT INTO universities_courses (university_id, course_id) VALUES (1, 3);
