@@ -40,7 +40,7 @@ CREATE TABLE "test_types" (
 CREATE TABLE "subjects" (
 	"id" serial NOT NULL,
 	"name" varchar(255) NOT NULL,
-	"code" varchar(20) NOT NULL,
+	"code" varchar(20) NOT NULL UNIQUE,
 	CONSTRAINT "subjects_pk" PRIMARY KEY ("id")
 ) WITH (
   OIDS=FALSE
@@ -176,6 +176,30 @@ INSERT INTO subjects (name, code) VALUES ('Laboratório de Gestão: Projeto de T
 INSERT INTO subjects (name, code) VALUES ('Processo Decisório', 'CAD7226');
 INSERT INTO subjects (name, code) VALUES ('Administração Estratégica', 'CAD7234');
 INSERT INTO subjects (name, code) VALUES ('Empreendimentos e Modelos de Negociação', 'CAD7235');
+INSERT INTO subjects (name, code) VALUES ('Desenho de Observação', 'EGR7105');
+INSERT INTO subjects (name, code) VALUES ('História da Arte', 'EGR7107');
+INSERT INTO subjects (name, code) VALUES ('Teoria da Cor', 'EGR7109');
+INSERT INTO subjects (name, code) VALUES ('Plástica', 'EGR7110');
+INSERT INTO subjects (name, code) VALUES ('Semiótica', 'EGR7113');
+INSERT INTO subjects (name, code) VALUES ('Tratamento de Imagem I', 'EGR7192');
+INSERT INTO subjects (name, code) VALUES ('Animação e Cinema', 'EGR7212');
+INSERT INTO subjects (name, code) VALUES ('Desenho Aplicado', 'EGR7108');
+INSERT INTO subjects (name, code) VALUES ('Ilustração Digital', 'EGR7190');
+INSERT INTO subjects (name, code) VALUES ('Narrativa e Linguagem Visual', 'EGR7411');
+INSERT INTO subjects (name, code) VALUES ('Roteiro e Direção', 'EGR7424');
+INSERT INTO subjects (name, code) VALUES ('Princípios de Animação', 'EGR7434');
+INSERT INTO subjects (name, code) VALUES ('Design de Personagens e Concept Art', 'EGR5026');
+INSERT INTO subjects (name, code) VALUES ('Edição de Som', 'EGR7422');
+INSERT INTO subjects (name, code) VALUES ('Edição e Composição de Vídeo', 'EGR7423');
+INSERT INTO subjects (name, code) VALUES ('Design de Cenários', 'EGR7431');
+INSERT INTO subjects (name, code) VALUES ('Gestão de Projetos', 'EGR5014');
+INSERT INTO subjects (name, code) VALUES ('Laboratório de Animação', 'EGR5030');
+INSERT INTO subjects (name, code) VALUES ('Stop-motion', 'EGR7129');
+INSERT INTO subjects (name, code) VALUES ('Animação de Personagens', 'EGR7481');
+INSERT INTO subjects (name, code) VALUES ('Modelagem de Personagens', 'EGR7251');
+INSERT INTO subjects (name, code) VALUES ('Animação 3D', 'EGR7441');
+INSERT INTO subjects (name, code) VALUES ('Modelagem 3D', 'EGR7443');
+INSERT INTO subjects (name, code) VALUES ('Rendering de Animação', 'EGR7444');
 
 
 INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 1, 1, 1);
@@ -225,6 +249,30 @@ INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALU
 INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 1, 45, 9);
 INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 1, 46, 9);
 INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 1, 47, 9);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 48, 1);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 49, 1);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 50, 1);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 51, 1);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 52, 1);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 53, 1);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 54, 1);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 55, 2);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 56, 2);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 57, 2);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 58, 2);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 59, 2);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 60, 3);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 61, 3);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 62, 3);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 63, 3);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 64, 3);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 65, 4);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 66, 4);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 67, 4);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 68, 5);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 69, 5);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 70, 5);
+INSERT INTO courses_subjects (university_id, course_id, subject_id, period) VALUES (1, 2, 71, 5);
 
 
 INSERT INTO professors (name, university_id) VALUES ('Alexandre Marino Costa', 1);
@@ -269,6 +317,25 @@ INSERT INTO professors (name, university_id) VALUES ('Gabriela Mattei de Souza',
 INSERT INTO professors (name, university_id) VALUES ('Inara Antunes Vieira Willerding', 1);
 INSERT INTO professors (name, university_id) VALUES ('Arcângelo dos Santos Safanelli', 1);
 INSERT INTO professors (name, university_id) VALUES ('Luiz Salgado Klaes', 1);
+INSERT INTO professors (name, university_id) VALUES ('Andre Luiz Sens', 1);
+INSERT INTO professors (name, university_id) VALUES ('André Salomão', 1);
+INSERT INTO professors (name, university_id) VALUES ('Chrystianne Goulart Ivanoski', 1);
+INSERT INTO professors (name, university_id) VALUES ('Clóvis Geyer Pereira', 1);
+INSERT INTO professors (name, university_id) VALUES ('Eliete Auxiliadora Assunção Ourives', 1);
+INSERT INTO professors (name, university_id) VALUES ('Eugenio Andres Diaz Merino', 1);
+INSERT INTO professors (name, university_id) VALUES ('Fernanda Iervolino', 1);
+INSERT INTO professors (name, university_id) VALUES ('Flávio Andaló', 1);
+INSERT INTO professors (name, university_id) VALUES ('Igor Reszka Pinheiro', 1);
+INSERT INTO professors (name, university_id) VALUES ('Josiane Wanderlinde Vieira', 1);
+INSERT INTO professors (name, university_id) VALUES ('Luiz Fernando Gonçalves De Figueiredo', 1);
+INSERT INTO professors (name, university_id) VALUES ('Milton Luiz Horn Vieira', 1);
+INSERT INTO professors (name, university_id) VALUES ('Monica Stein', 1);
+INSERT INTO professors (name, university_id) VALUES ('Morgana De Franceschi Hoefel', 1);
+INSERT INTO professors (name, university_id) VALUES ('Patrick Martinelli Veiga', 1);
+INSERT INTO professors (name, university_id) VALUES ('Paulo De Tarso Mendes Luna', 1);
+INSERT INTO professors (name, university_id) VALUES ('Rafael Luiz Marques Ary', 1);
+INSERT INTO professors (name, university_id) VALUES ('Richard Perassi Luiz De Sousa', 1);
+INSERT INTO professors (name, university_id) VALUES ('Rosana Andrade Dias Do Nascimento', 1);
 
 
 INSERT INTO professors_courses (professor_id, course_id) VALUES (1, 1);
@@ -313,3 +380,22 @@ INSERT INTO professors_courses (professor_id, course_id) VALUES (39, 1);
 INSERT INTO professors_courses (professor_id, course_id) VALUES (40, 1);
 INSERT INTO professors_courses (professor_id, course_id) VALUES (41, 1);
 INSERT INTO professors_courses (professor_id, course_id) VALUES (42, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (43, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (44, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (45, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (46, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (47, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (48, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (49, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (50, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (51, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (52, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (53, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (54, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (55, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (56, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (57, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (58, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (59, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (60, 1);
+INSERT INTO professors_courses (professor_id, course_id) VALUES (61, 1);
