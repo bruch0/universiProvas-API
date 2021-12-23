@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import * as subjectService from "../services/subjectService";
+import * as professorsService from "../services/courseProfessorsService";
 
-const getCourseSubjects = async (
+const getUniversityProfessors = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -22,15 +22,15 @@ const getCourseSubjects = async (
     return res.status(400).send("Universidade e/ou curso inválidos");
 
   try {
-    const subjects = await subjectService.getCourseSubjects(
+    const universities = await professorsService.getUniversityProfessors(
       universityId,
       courseId
     );
 
-    return res.send(subjects);
+    return res.send(universities);
   } catch (error) {
     next(error);
   }
 };
 
-export { getCourseSubjects };
+export { getUniversityProfessors };
