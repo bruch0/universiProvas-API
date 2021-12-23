@@ -4,13 +4,16 @@ import fs from "fs";
 
 import * as testService from "../services/testService";
 
-const getCourseSubjects = async (
+const getTestNeededInfo = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
+  const courseId: number = Number(req.params.courseId);
+
+  if (!courseId || courseId < 0 || isNaN(courseId)) return res.sendStatus(400);
   try {
-    const info = await testService.getTestNeededInfo();
+    const info = await testService.getTestNeededInfo(courseId);
 
     return res.send(info);
   } catch (error) {
@@ -70,4 +73,4 @@ const uploadTest = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export { getCourseSubjects, uploadTest };
+export { getTestNeededInfo, uploadTest };

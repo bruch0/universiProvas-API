@@ -6,12 +6,19 @@ import { Subjects } from "../entities/subjects";
 import { uploadFileS3 } from "./aws/uploadFile";
 import { Tests } from "../entities/tests";
 import { TestTypes } from "../entities/testTypes";
+import { ProfessorCourses } from "../entities/professorsCourses";
 
-const getTestNeededInfo = async () => {
+const getTestNeededInfo = async (courseId: number) => {
   const professors = await getConnection()
     .createQueryBuilder()
     .select(["professors.name as name", "professors.id as id"])
+    .leftJoin(
+      ProfessorCourses,
+      "professors_courses",
+      "professors.id = professors_courses.professor_id"
+    )
     .from(Professors, "professors")
+    .where(`professors_courses.course_id = ${courseId}`)
     .execute();
 
   const testTypes = await getConnection()

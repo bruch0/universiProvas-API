@@ -4,7 +4,7 @@ import * as testController from "../controllers/testController";
 
 const router = express.Router();
 
-router.get("/tests", testController.getCourseSubjects);
+router.get("/tests/:courseId", testController.getTestNeededInfo);
 
 router.post("/tests", testController.uploadTest);
 
