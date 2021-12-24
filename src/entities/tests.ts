@@ -9,6 +9,9 @@ export class Tests {
   year: string;
 
   @Column()
+  course_id: number;
+
+  @Column()
   professor_id: number;
 
   @Column()

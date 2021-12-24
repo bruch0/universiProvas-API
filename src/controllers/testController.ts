@@ -28,6 +28,7 @@ const uploadTest = async (req: Request, res: Response, next: NextFunction) => {
 
   try {
     form.parse(req, async (err, fields, files: any) => {
+      const courseId: number = Number(fields.courseId);
       const professorId: number = Number(fields.professorId);
       const subjectId: number = Number(fields.subjectId);
       const typeId: number = Number(fields.typeId);
@@ -42,11 +43,17 @@ const uploadTest = async (req: Request, res: Response, next: NextFunction) => {
         subjectId < 1 ||
         !period ||
         !typeId ||
-        typeId < 1
+        typeId < 1 ||
+        !courseId ||
+        courseId < 1
       )
         return res.sendStatus(400);
 
-      const check = await testService.checkTestParams(professorId, subjectId);
+      const check = await testService.checkTestParams(
+        courseId,
+        professorId,
+        subjectId
+      );
 
       if (!check) return res.sendStatus(404);
 
@@ -56,6 +63,7 @@ const uploadTest = async (req: Request, res: Response, next: NextFunction) => {
 
       await testService.registerTestOnDatabase(
         fileUrl,
+        courseId,
         professorId,
         subjectId,
         typeId,

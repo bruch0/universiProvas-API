@@ -7,6 +7,7 @@ import { uploadFileS3 } from "./aws/uploadFile";
 import { Tests } from "../entities/tests";
 import { TestTypes } from "../entities/testTypes";
 import { ProfessorCourses } from "../entities/professorsCourses";
+import { Courses } from "../entities/courses";
 
 const getTestNeededInfo = async (courseId: number) => {
   const professors = await getConnection()
@@ -58,7 +59,18 @@ const uploadTest = async (file: any, filename: string) => {
   return fileUrl;
 };
 
-const checkTestParams = async (professorId: number, subjectId: number) => {
+const checkTestParams = async (
+  courseId: number,
+  professorId: number,
+  subjectId: number
+) => {
+  const course = await getConnection()
+    .createQueryBuilder()
+    .select("courses.name as name")
+    .from(Courses, "courses")
+    .where(`courses.id = ${courseId}`)
+    .execute();
+
   const professor = await getConnection()
     .createQueryBuilder()
     .select("professors.name as name")
@@ -73,11 +85,12 @@ const checkTestParams = async (professorId: number, subjectId: number) => {
     .where(`subjects.id = ${subjectId}`)
     .execute();
 
-  return Boolean(professor.length && subject.length);
+  return Boolean(courseId && professor.length && subject.length);
 };
 
 const registerTestOnDatabase = async (
   fileUrl: string,
+  courseId: number,
   professorId: number,
   subjectId: number,
   typeId: number,
@@ -88,6 +101,7 @@ const registerTestOnDatabase = async (
     .insert()
     .into(Tests)
     .values({
+      course_id: courseId,
       professor_id: professorId,
       subject_id: subjectId,
       type_id: typeId,
